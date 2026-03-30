@@ -48,46 +48,4 @@ acc.withdraw(5000)
 print(acc.owner)          
 
 # Test setter protection
-acc.balance = -500          
-
-
-
-
-
-
-
-
-# class Person:
-#     def __init(self):
-#         self.__age= 0
-#     @property
-#     def age(self):
-#         return self.__age
-#     @age.setter
-#     def age(self,value):
-#         if value>=0 and value<=120:
-#             self.__age=value
-#         else:
-#             raise ValueError("age is not valid")
-# p=Person()
-# p.age=25
-# print(p.age)
-# p.age=-10
- 
-# class BankBalance:
-#     def __init__(self):
-#         self.__balance=0
-#     @property
-#     def balance(self):
-#         return self.__balance
-#     @balance.setter
-#     def balance(self,deposit):
-#         if deposit>=0:
-#             self.__balance=deposit
-#         else:
-#             raise ValueError("invalid")
-# b=BankBalance()
-# b.balance= -10
-# print(b.balance)
-
-# b.balance = -100
+acc.balance = -500
