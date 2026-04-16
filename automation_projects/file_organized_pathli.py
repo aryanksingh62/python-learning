@@ -1,5 +1,14 @@
 from pathlib import Path
 import shutil
+import logging
+
+Path("logs").mkdir(exist_ok=True)
+
+logging.basicConfig(
+    filename= "logs/app.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 ext_map= {".jpg":"images",".png":"images",
       ".pdf":"pdf",".csv":"data",".txt":"txtfile"}
@@ -31,8 +40,8 @@ def organizer(folder):
                     shutil.move(new_name,new_dest_file)
           
             except Exception as e:
-                print(f"failed to moved\n{e}")
-    print("folder organized successfully")
+                logging.error(f"failed to moved:{p.name}\n{e}")
+    logging.info("succesfullly moved")
 
 if __name__=="__main__":
     folder = input("enter folder  name: ").strip() or Path.cwd()
@@ -40,4 +49,4 @@ if __name__=="__main__":
         organizer(folder)
         
     else:
-        print("Invalid folder")
+        logging.error("Invalid folder")
