@@ -1,5 +1,4 @@
 import requests
-from urllib.parse import urljoin
 import json
 from pathlib import Path
 
@@ -33,7 +32,7 @@ def collect_pokemon(url):
                     poke_type= [i["type"]["name"] for i in data2["types"]]
                     result.append({"name":poke_name,"type":poke_type,"weight":poke_weight,"height":poke_height})
             
-                except Exception as e:
+                except requests.RequestException as e:
                     print(f"Failed to access the data of {poke_name}\n{e}")
 
             print(f"pokemon deatils on page {count} collected succesfully✅")
@@ -42,9 +41,9 @@ def collect_pokemon(url):
                 break
 
             next_url= data["next"] if data["next"] else None
-            url = urljoin(url, next_url) if next_url else None
+            url = next_url if next_url else None
         
-        except Exception as e:
+        except requests.RequestException as e:
             print(f"failed to access the pokeapi.co\n{e}")
             return []
     return result
