@@ -40,8 +40,7 @@ def collect_pokemon(url):
             if count==9:
                 break
 
-            next_url= data["next"] if data["next"] else None
-            url = next_url if next_url else None
+            url = data.get("next")
         
         except requests.RequestException as e:
             print(f"failed to access the pokeapi.co\n{e}")
