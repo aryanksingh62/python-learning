@@ -4,7 +4,10 @@ import aiohttp
 async def fetch_poke(session,url):
     try:
         async with session.get(url) as response:
-            return (url,await response.json())
+            response.raise_for_status()
+            data= await response.json()
+            return (url,data)
+        
     except Exception as e:
         return (url,e)
     
